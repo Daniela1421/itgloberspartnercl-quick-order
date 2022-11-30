@@ -2,6 +2,8 @@
 
 Este componente permite realizar una compra rápida ingresando el SKU de un producto.
 
+![image](https://user-images.githubusercontent.com/92064924/204683556-22c4a8df-00b5-4f8f-9e17-a7082f80533f.png)
+
 ## Configuration 
 
 ### Paso 1 - Clonar
