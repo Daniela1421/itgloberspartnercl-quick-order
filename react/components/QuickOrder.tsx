@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react"
 import { useMutation, useLazyQuery } from "react-apollo"
 import UPDATE_CART from "../graphql/updateCart.graphql"
 import GET_PRODUCT from "../graphql/getProductBySku.graphql"
+import { useCssHandles } from "vtex.css-handles"
+
+import "./styles.css"
 
 const QuickOrder = () => {
   const [inputText, setInputText] = useState("");
@@ -9,6 +12,18 @@ const QuickOrder = () => {
   const [getProductData, { data: product }] = useLazyQuery(GET_PRODUCT)
   const [addToCart] = useMutation(UPDATE_CART)
 
+  const CSS_HANDLES = [
+    "quick__order--container",
+    "quick__order--title", 
+    "quick__order--form",
+    "quick__order--label", 
+    "quick__order--input", 
+    "quick__order--btn"
+  ]
+
+  const handles = useCssHandles(CSS_HANDLES)
+  
+  
   const handleChange = (evt: any) => {
     setInputText(evt.target.value)
     console.log("input changed", inputText);
@@ -54,14 +69,14 @@ const QuickOrder = () => {
    }
   }
 
-  return <div>
-    <h2>Compra rápida Kanu Pet</h2>
-    <form onSubmit={searchProduct}>
+  return <div className={`mb4 ${handles["quick__order--container"]}`}>
+    <h2 className={handles["quick__order--title"]}>Compra rápida Kanu Pet</h2>
+    <form className={`mt5 ${handles["quick__order--form"]}`} onSubmit={searchProduct}>
       <div>
-        <label htmlFor="sku">Ingresa el número de sku</label>
-        <input id="sku" type="text" onChange={handleChange}></input>
+        <label className={handles["quick__order--label"]} htmlFor="sku">Ingresa el número de sku</label>
+        <input className={`ml5 ${handles["quick__order--input"]}`} id="sku" type="text" onChange={handleChange}></input>
       </div>
-      <input type="submit" value="añadir al carrito"/>
+      <input className={`mt5 ${handles["quick__order--btn"]}`} type="submit" value="Añadir al Carrito"/>
     </form>
   </div>
 }
